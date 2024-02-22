@@ -1,11 +1,18 @@
 import { AiOutlineGlobal, AiOutlineUser } from "react-icons/ai";
+import { PiShoppingCartSimpleFill } from "react-icons/pi";
+import { useState } from "react";
 
 import tags from "@/mocks/tags";
 import "./style.scss";
+import Cart from "@/components/cart";
+import { useCart } from "@/context/cart";
 
 function Header() {
+  const [openCart, setOpenCart] = useState(false);
+  const { state } = useCart();
+
   return (
-    <header className="mb-8">
+    <header className="px-10 mb-8">
       <div className="tagsBox">
         <a href="/" className="logoLink">
           <img
@@ -15,18 +22,24 @@ function Header() {
           />
         </a>
         {tags.map((tag) => (
-          <p className="tag text-gray-500 hover:text-white transition-all">
+          <p className="text-gray-500 transition-all tag hover:text-white">
             {tag.toUpperCase()}
           </p>
         ))}
       </div>
       <div className="userBox">
+        <p className="mr-1">{state.cart.length}</p>
+        <PiShoppingCartSimpleFill
+          onClick={() => setOpenCart(true)}
+          className="icon"
+        />
         <AiOutlineGlobal className="icon" />
         <AiOutlineUser className="icon" />
         <div className="download">
           <p>Baixar Epic Games </p>
         </div>
       </div>
+      {openCart && <Cart setOpenCart={setOpenCart} />}
     </header>
   );
 }

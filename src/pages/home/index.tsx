@@ -6,7 +6,6 @@ export default function Home() {
     <main>
       <Header />
       <HeroBanner />
-      <p>Minha tela inicial</p>
     </main>
   );
 }

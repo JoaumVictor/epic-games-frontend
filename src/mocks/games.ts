@@ -29,7 +29,7 @@ const games: gameProps[] = [
     price: "free",
     status: "Já disponível",
     description:
-      "Honkai: Star Rail é um novo RPG de fantasia espacial da HoYoverse. Suba no Expresso Astral e vivencie as infinitas maravilhas da galáxia em uma jornada cheia de aventura e emoção.",
+      "Honkai: Star Rail é um novo RPG de fantasia espacial da HoYoverse. Suba no Expresso Astral e vivencie as infinitas maravilhas da galáxia.",
     cover:
       "https://cdn2.unrealengine.com/egs-honkai-star-rail-version-2-0-carousel-desktop-2560x1440-d3b790cf05dd.jpg?h=720&quality=medium&resize=1&w=1280",
     banner:
@@ -43,7 +43,7 @@ const games: gameProps[] = [
     status: "Disponível 3 de março",
 
     description:
-      "Viaje para um empolgante jogo de plataforma de aventura e ação no mundo mitológico persa, onde os limites do tempo e do espaço são seus para manipular. Jogue como Sargon e evolua de espadachim prodígio para uma lenda extraordinária enquanto domina o combate acrobático e desbloqueia novos poderes do tempo e super-habilidades exclusivas.",
+      "Viaje para um empolgante jogo de plataforma de aventura e ação no mundo mitológico persa.",
     cover:
       "https://cdn2.unrealengine.com/egs-prince-of-persia-lost-crown-carousel-desktop-1920x1080-c7ae57efc8ab.jpg?h=720&quality=medium&resize=1&w=1280",
     banner:
@@ -69,7 +69,7 @@ const games: gameProps[] = [
     status: "Já disponível",
 
     description:
-      "Tático, belo e incomparável, o RTS de ficção científica e ganhador do prêmio GOTY retorna com Homeworld 3. Assuma o controle e mergulhe no combate entre frotas num espaço deslumbrante e inteiramente em 3D conforme a história premiada se desdobra numa escala galáctica.",
+      "Tático, belo e incomparável, o RTS de ficção científica e ganhador do prêmio GOTY retorna com Homeworld 3.",
     cover:
       "https://cdn2.unrealengine.com/egs-homewrold-3-carousel-desktop-1920x1080-0ba8d22503a4.jpg?h=720&quality=medium&resize=1&w=1280",
     banner:
@@ -81,7 +81,7 @@ const games: gameProps[] = [
     titleImage: "https://www.dafont.com/forum/attach/orig/5/1/517500.png",
     status: "Já disponível",
     description:
-      "Rocket League é um jogo de futebol de carros híbrido com física de jogo intensa e fácil de entender. Jogue com até 8 jogadores online em várias plataformas e em partidas locais com tela dividida para 4 jogadores.",
+      "Rocket League é um jogo de futebol de carros híbrido com física de jogo intensa e fácil de entender.",
     cover:
       "https://cdn2.unrealengine.com/egs-rocket-league-mazda-rx-7-breaker-1920x1080-7ba959ae1a0f.jpg?h=480&quality=medium&resize=1&w=854",
     banner:
