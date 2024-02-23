@@ -12,9 +12,9 @@ export default function Checkout() {
   const { state, dispatch, totalPriceInCart } = useCart();
 
   // TESTE PARA MOCKAR JOGOS NO CARRINHO
-  useEffect(() => {
-    dispatch({ type: "SET_MOCKED_GAMES", payload: games.slice(0, 3) });
-  }, []);
+  // useEffect(() => {
+  //   dispatch({ type: "SET_MOCKED_GAMES", payload: games.slice(0, 3) });
+  // }, []);
 
   const handleDeleteGame = (gameName: string) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: gameName });
@@ -36,7 +36,7 @@ export default function Checkout() {
                 <p className="text-xl text-white">Seu carrinho está vazio</p>
                 <img
                   src="https://wiki.hoyolab.com/_nuxt/img/page_empty.a56019d.png"
-                  alt="varrinho vazio"
+                  alt="carrinho vazio"
                   className="w-[350px]"
                 />
               </div>

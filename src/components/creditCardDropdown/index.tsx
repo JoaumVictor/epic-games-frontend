@@ -1,6 +1,11 @@
 import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { FaRegCreditCard, FaTrash } from "react-icons/fa";
+import {
+  FaRegCreditCard,
+  FaTrash,
+  FaCheckCircle,
+  FaRegCircle,
+} from "react-icons/fa";
 
 import "./style.scss";
 import { useCreditCard } from "@/context/creditCard";
@@ -18,12 +23,23 @@ interface CreditCardDropdownProps {
   creditCards: creditCardsProps[];
   selectedCard: creditCardsProps;
   onSelectCard: (selected: creditCardsProps) => void;
+  selectedPaymentMethod:
+    | "pix"
+    | "creditCard"
+    | "boleto"
+    | "paypal"
+    | "userCreditCard";
+  setSelectedPaymentMethod: (
+    label: "pix" | "creditCard" | "boleto" | "paypal" | "userCreditCard"
+  ) => void;
 }
 
 const CreditCardDropdown = ({
   creditCards,
   selectedCard,
   onSelectCard,
+  selectedPaymentMethod,
+  setSelectedPaymentMethod,
 }: CreditCardDropdownProps) => {
   const { removeCreditCard } = useCreditCard();
 
@@ -37,7 +53,12 @@ const CreditCardDropdown = ({
         <>
           <div className="relative">
             <Listbox.Button className="relative flex items-center justify-between w-full px-3 py-2 text-left text-black border rounded-md focus:outline-none focus:border-blue-300">
-              <FaRegCreditCard className="!text-black icon mr-2 text-[22px]" />
+              {selectedPaymentMethod === "userCreditCard" ? (
+                <FaCheckCircle className="!text-[#63aafb] text-[24px]" />
+              ) : (
+                <FaRegCircle className="!text-black text-[24px]" />
+              )}
+              <FaRegCreditCard className="!text-black icon mx-2 text-[22px]" />
               <div className="flex items-center justify-between w-full">
                 <p className="!text-black">
                   {selectedCard?.label || "Selecione um cartão"}
@@ -72,6 +93,9 @@ const CreditCardDropdown = ({
                   >
                     {({ active }) => (
                       <div
+                        onClick={() =>
+                          setSelectedPaymentMethod("userCreditCard")
+                        }
                         className={`${
                           active ? "text-black bg-blue-500" : "text-gray-900"
                         } cursor-pointer select-none relative py-2 pl-10 pr-4 flex items-center justify-between w-full`}
