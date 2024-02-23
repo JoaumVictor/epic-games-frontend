@@ -27,8 +27,6 @@ const PaymentModal: React.FC<ModalProps> = ({
   paymentMethod,
   value,
 }) => {
-  const currentYear = new Date().getFullYear();
-
   const validationSchema = Yup.object({
     cardNumber: Yup.string()
       .required("Número do cartão é obrigatório")
@@ -39,17 +37,16 @@ const PaymentModal: React.FC<ModalProps> = ({
       .required("Data de validade é obrigatória")
       .matches(/^(0[1-9]|1[0-2])\d{2}$/, "Data inválida. Formato aceito: MM/YY")
       .test("isValidDate", "Data inválida ou expirada", (value) => {
-        const month = value.slice(0, 2);
-        const year = value.slice(2);
-        const currentYearLastDigits = new Date()
-          .getFullYear()
-          .toString()
-          .slice(-2);
+        const currentYear = new Date().getFullYear();
+        const currentMonth = new Date().getMonth() + 1;
+        const month = parseInt(value.slice(0, 2), 10);
+        const year = parseInt(`20${value.slice(2)}`, 10);
 
         return (
-          parseInt(month, 10) >= 1 && // Verifica se o mês é de 01 a 12
-          parseInt(month, 10) <= 12 && // Verifica se o mês é de 01 a 12
-          parseInt(year, 10) >= parseInt(currentYearLastDigits, 10) // Verifica se o ano é atual ou futuro
+          (year > currentYear ||
+            (year === currentYear && month >= currentMonth)) &&
+          parseInt(String(month), 10) >= 1 &&
+          parseInt(String(month), 10) <= 12
         );
       }),
 
@@ -141,7 +138,7 @@ const PaymentModal: React.FC<ModalProps> = ({
                   id="cardNumber"
                   label="Número do cartão"
                   name="cardNumber"
-                  mask="9999 9999 9999 9999"
+                  mask="**** **** **** ****"
                   placeholder="0000 0000 0000 0000"
                   formik={formik}
                   onBlur={formik.handleBlur}
@@ -155,7 +152,7 @@ const PaymentModal: React.FC<ModalProps> = ({
                     id="expirationDate"
                     label="Data de validade"
                     name="expirationDate"
-                    mask="99/99"
+                    mask="**/**"
                     placeholder="MM/YY"
                     formik={formik}
                     onBlur={formik.handleBlur}
@@ -168,7 +165,7 @@ const PaymentModal: React.FC<ModalProps> = ({
                     id="cvv"
                     label="CVV"
                     name="cvv"
-                    mask="999"
+                    mask="***"
                     placeholder="000"
                     formik={formik}
                     onBlur={formik.handleBlur}

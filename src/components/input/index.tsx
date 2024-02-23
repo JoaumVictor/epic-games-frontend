@@ -29,14 +29,14 @@ export default function Input({
   className,
 }: InputProps) {
   const formatMask = (value: string, mask: string) => {
-    return value.replace(new RegExp(`[${mask}]`, "g"), "");
+    return value.replace(new RegExp(`[${mask.replace(/9/g, "*")}]`, "g"), "");
   };
 
   return (
     <div className={classNames(className, "relative mb-3")}>
       <label className="text-black text-[14px]">{label}</label>
       <InputMask
-        mask={mask || ""}
+        mask={mask.replace(/9/g, "*") || ""}
         maskPlaceholder=""
         value={value}
         onBlur={onBlur}
