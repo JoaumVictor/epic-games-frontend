@@ -6,6 +6,7 @@ import tags from "@/mocks/tags";
 import "./style.scss";
 import Cart from "@/components/cart";
 import { useCart } from "@/context/cart";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [openCart, setOpenCart] = useState(false);
@@ -14,13 +15,13 @@ function Header() {
   return (
     <header className="px-10 mb-8">
       <div className="tagsBox">
-        <a href="/" className="logoLink">
+        <Link to="/" className="logoLink">
           <img
             src="https://logodownload.org/wp-content/uploads/2020/10/epic-games-logo.png"
             alt="epicLogo"
             className="logo"
           />
-        </a>
+        </Link>
         {tags.map((tag) => (
           <p className="text-gray-500 transition-all tag hover:text-white">
             {tag.toUpperCase()}

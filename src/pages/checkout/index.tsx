@@ -11,11 +11,6 @@ import { useNavigate } from "react-router-dom";
 export default function Checkout() {
   const { state, dispatch, totalPriceInCart } = useCart();
 
-  // TESTE PARA MOCKAR JOGOS NO CARRINHO
-  // useEffect(() => {
-  //   dispatch({ type: "SET_MOCKED_GAMES", payload: games.slice(0, 3) });
-  // }, []);
-
   const handleDeleteGame = (gameName: string) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: gameName });
   };

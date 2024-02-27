@@ -37,14 +37,11 @@ interface paymentMethodProps {
 export default function Payment() {
   const { state, totalPriceInCart, dispatch } = useCart();
 
-  // TESTE PARA MOCKAR JOGOS NO CARRINHO
-  useEffect(() => {
-    dispatch({ type: "SET_MOCKED_GAMES", payload: [games[0]] });
-  }, []);
-
   const [allCreditCards, setAllCreditCards] = useState<creditCardsProps[]>([]);
 
-  const [selectedCard, setSelectedCard] = useState(allCreditCards[0]);
+  const [selectedCard, setSelectedCard] = useState<creditCardsProps>(
+    allCreditCards[0]
+  );
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(
     "" as selectedPaymentMethodType
@@ -184,14 +181,39 @@ export default function Payment() {
             <p className="mb-10 text-2xl text-black text-end">
               Resumo do pedido
             </p>
-            <div className="mb-10">
+            <div
+              className={classNames(
+                "w-full mb-10 flex items-start justify-center gap-5 flex-col max-h-[450px] overflow-x-hidden py-10 pr-3",
+                state.cart.length <= 3 ? "overflow-y-auto" : "overflow-y-hidden"
+              )}
+              style={{
+                scrollbarWidth: "thin",
+                scrollbarColor: "#272727 transparent",
+              }}
+            >
               {state.cart.map(({ game }) => (
                 <div className="flex items-center justify-between w-full">
-                  <p className="text-[#4c4c4c] font-bold text-end w-full">
-                    {game.name}
-                  </p>
+                  <img
+                    src={game.banner}
+                    alt={game.name}
+                    className="w-[60px] rounded-[8px]"
+                  />
+                  <div className="flex flex-col items-center justify-center w-1/2 gap-3">
+                    <p className="text-[#4c4c4c] font-bold text-end w-full">
+                      {game.name}
+                    </p>
+                    <p className="text-[#8e8e8e] text-end w-full">
+                      {game.price === "free"
+                        ? "grátis"
+                        : formatterCurrency(Number(game.price))}
+                    </p>
+                  </div>
                 </div>
               ))}
+            </div>
+            <div className="flex items-center justify-between w-full">
+              <p className="text-black">Total de itens:</p>
+              <p className="text-black">{state.cart.length}</p>
             </div>
             <div className="flex items-center justify-between w-full">
               <p className="text-black">Desconto</p>
@@ -231,6 +253,7 @@ export default function Payment() {
           isOpen={modalOpen}
           onClose={() => setModalOpen(false)}
           paymentMethod={selectedPaymentMethod}
+          selectedCard={selectedCard}
           value={totalPriceInCart(state.cart)}
         />
       </LimitScreen>
